@@ -1,0 +1,27 @@
+POST http://localhost:3001/api/blogs
+Content-Type: application/json
+
+{
+    "title": "Wet food bulemia",
+	"author": "Orange Kitty",
+	"url": "http://www.wetfoodstinks.com",
+	"likes": 1
+}
+
+###
+
+
+GET http://localhost:3001/api/blogs/
+
+###
+
+DELETE http://localhost:3001/api/blogs/611038660f1daf2164577657
+
+###
+
+PUT http://localhost:3001/api/blogs/611039d80f1daf216457765a
+Content-Type: application/json
+
+{
+	"title": "Wet food"
+}
