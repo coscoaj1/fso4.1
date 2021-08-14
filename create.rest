@@ -11,7 +11,7 @@ Content-Type: application/json
 ###
 
 
-GET http://localhost:3001/api/blogs/
+GET http://localhost:3001/api/users/
 
 ###
 
@@ -23,5 +23,16 @@ PUT http://localhost:3001/api/blogs/611039d80f1daf216457765a
 Content-Type: application/json
 
 {
-	"title": "Wet food"
+	"likes": 67
+}
+
+###
+POST http://localhost:3001/api/users/
+Content-Type: application/json
+
+{
+	"blogs": [],
+	"username": "Sid",
+	"name": "Sid Cat",
+	"password": "wet food" 
 }
