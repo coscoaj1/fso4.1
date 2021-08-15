@@ -2,10 +2,11 @@ POST http://localhost:3001/api/blogs
 Content-Type: application/json
 
 {
-    "title": "Wet food bulemia",
-	"author": "Orange Kitty",
+    "title": "Kitty ipsum",
+	"author": "orange",
 	"url": "http://www.wetfoodstinks.com",
-	"likes": 1
+	"likes": 1,
+	"userId": "61179cb23cb4214950c101a0"
 }
 
 ###
@@ -32,7 +33,8 @@ Content-Type: application/json
 
 {
 	"blogs": [],
-	"username": "Sid",
-	"name": "Sid Cat",
-	"password": "wet food" 
+	"username": "li",
+	"name": "OK",
+	"password": "password"
 }
+   

@@ -44,6 +44,7 @@ test('http post request creates a new blog post', async () => {
 		author: 'Sid',
 		url: 'www.insurancefraud.com',
 		likes: 99,
+		user: '61178d3e3a9d1b63a82ca8ed',
 	};
 
 	await api
