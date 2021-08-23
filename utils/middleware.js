@@ -23,8 +23,27 @@ const errorHandler = (error, request, response, next) => {
 	next(error);
 };
 
+const tokenExtractor = (request, response, next) => {
+	getTokenFrom = (request) => {
+		const authorization = request.get('authorization');
+		if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
+			return authorization.substring(7);
+		}
+		return null;
+	};
+	next();
+};
+
+// const userExtractor = (request, response, next) => {
+// 	getUserFrom = (request) => {
+// 		const findUser = request.get(userId);
+// 		return findUser;
+// 	};
+// };
+
 module.exports = {
 	requestLogger,
 	unknownEndpoint,
 	errorHandler,
+	tokenExtractor,
 };

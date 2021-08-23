@@ -38,50 +38,90 @@ test('unique identifier of blog posts is named id', async () => {
 	expect(response.body.id).toBeDefined;
 });
 
-test('http post request creates a new blog post', async () => {
-	const newBlog = {
-		title: 'how to get insurance money',
-		author: 'Sid',
-		url: 'www.insurancefraud.com',
-		likes: 99,
-		user: '61178d3e3a9d1b63a82ca8ed',
-	};
+describe('Addition of a new blog', () => {
+	let headers;
 
-	await api
-		.post('/api/blogs')
-		.send(newBlog)
-		.expect(200)
-		.expect('Content-Type', /application\/json/);
+	beforeEach(async () => {
+		const newUser = {
+			username: 'root',
+			name: 'root',
+			password: 'password',
+		};
 
-	const blogsAtEnd = await helper.blogsInDb();
-	expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length + 1);
-});
+		await api.post('/api/users').send(newUser);
 
-test('if "likes" property is missing, will default to 0', async () => {
-	const newBlog = {
-		title: 'catfishing',
-		author: 'Ma',
-		url: 'https://www.alfame.com/blog/master-data-management',
-	};
+		const result = await api.post('/api/login').send(newUser);
 
-	const addedBlog = await api
-		.post('/api/blogs')
-		.send(newBlog)
-		.expect(200)
-		.expect('Content-Type', /application\/json/);
+		headers = {
+			Authorization: `bearer ${result.body.token}`,
+		};
+	});
 
-	console.log(addedBlog.body);
-	expect(addedBlog.body.likes).toBe(0);
-});
+	test('http post request creates a new blog post', async () => {
+		const newBlog = {
+			title: 'how to get insurance money',
+			author: 'WhiteKitty',
+			url: 'www.insurancefraud.com',
+			likes: 99,
+		};
 
-test("invalid blog can't be added", async () => {
-	const newBlog = {
-		author: 'Orange Kitty',
-	};
+		await api
+			.post('/api/blogs')
+			.send(newBlog)
+			.expect(200)
+			.set(headers)
+			.expect('Content-Type', /application\/json/);
 
-	await api.post('/api/blogs').send(newBlog).expect(400);
+		const blogsAtEnd = await helper.blogsInDb();
+		expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length + 1);
+	});
 
-	const response = await api.get('/api/blogs');
+	test('if "likes" property is missing, will default to 0', async () => {
+		const newBlog = {
+			title: 'catfishing',
+			author: 'Ma',
+			url: 'https://www.alfame.com/blog/master-data-management',
+		};
 
-	expect(response.body.length).toBe(helper.initialBlogs.length);
+		const addedBlog = await api
+			.post('/api/blogs')
+			.send(newBlog)
+			.set(headers)
+			.expect(200)
+			.expect('Content-Type', /application\/json/);
+
+		console.log(addedBlog.body);
+		expect(addedBlog.body.likes).toBe(0);
+	});
+
+	test("invalid blog can't be added", async () => {
+		const newBlog = {
+			author: 'Orange Kitty',
+		};
+
+		await api
+			.post('/api/blogs') //
+			.send(newBlog)
+			.set(headers)
+			.expect(400);
+
+		const blogsAtEnd = await helper.blogsInDb();
+
+		expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length);
+	});
+
+	test("blog can't be added without token", async () => {
+		const newBlog = {
+			title: 'catfishing',
+			author: 'Ma',
+			url: 'https://www.alfame.com/blog/master-data-management',
+		};
+
+		await api
+			.post('/api/blogs') //
+			.send(newBlog)
+			.expect(401);
+
+		expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length);
+	});
 });

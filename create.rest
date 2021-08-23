@@ -1,30 +1,40 @@
 POST http://localhost:3001/api/blogs
 Content-Type: application/json
-
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IldoaXRlS2l0dHkiLCJpZCI6IjYxMTkwODY0ODczYjQ0MTVjYzcwN2EzZiIsImlhdCI6MTYyOTAzMDcyOX0.AHYLUdS0V4kWYee0kO73M1q4sFPZ690DYq-hE2Qis2E
 {
-    "title": "Kitty ipsum",
-	"author": "orange",
-	"url": "http://www.wetfoodstinks.com",
-	"likes": 1,
-	"userId": "61179cb23cb4214950c101a0"
+    "title": "Irunshit",
+	"author": "WhiteKitty",
+	"url": "http://www.catthuglife.com",
+	"likes": 99,
+	"userId": "61190864873b4415cc707a3f"
 }
 
 ###
 
 
+GET http://localhost:3001/api/blogs/
+
+###
 GET http://localhost:3001/api/users/
+###
+
+DELETE http://localhost:3001/api/blogs/6117aaa392b06e1cec253874
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IldoaXRlS2l0dHkiLCJpZCI6IjYxMTkwODY0ODczYjQ0MTVjYzcwN2EzZiIsImlhdCI6MTYyOTAzMDcyOX0.AHYLUdS0V4kWYee0kO73M1q4sFPZ690DYq-hE2Qis2E
+
 
 ###
 
-DELETE http://localhost:3001/api/blogs/611038660f1daf2164577657
-
-###
-
-PUT http://localhost:3001/api/blogs/611039d80f1daf216457765a
+PUT http://localhost:3001/api/blogs/611b85b9eb49362110dfb5e9
 Content-Type: application/json
 
 {
-	"likes": 67
+	"title": "new cat on the streets",
+    "author": "WhiteKitty",
+    "url": "www.google.com",
+	"likes": 67,
+	"user":  "61190864873b4415cc707a3f"
+    
+	
 }
 
 ###
@@ -32,9 +42,21 @@ POST http://localhost:3001/api/users/
 Content-Type: application/json
 
 {
-	"blogs": [],
-	"username": "li",
-	"name": "OK",
-	"password": "password"
+	
+	"username": "OrangeKitty",
+	"password": "terrorism"
 }
    
+###
+
+POST http://localhost:3001/api/login
+Content-Type: application/json
+
+{
+	"username": "OrangeKitty",
+	"password": "terrorism"
+}
+
+###
+
+POST http://localhost:3001/api/testing/reset
