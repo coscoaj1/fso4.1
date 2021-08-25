@@ -1,12 +1,13 @@
 POST http://localhost:3001/api/blogs
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IldoaXRlS2l0dHkiLCJpZCI6IjYxMTkwODY0ODczYjQ0MTVjYzcwN2EzZiIsImlhdCI6MTYyOTAzMDcyOX0.AHYLUdS0V4kWYee0kO73M1q4sFPZ690DYq-hE2Qis2E
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik9yYW5nZUtpdHR5IiwiaWQiOiI2MTI0MDk0NDI1ZGI3NzEzOGM4ODY5ZWMiLCJpYXQiOjE2Mjk3NTE2Nzl9.vnEuzrJJNStkldNzlI-BQ88yfHvHa22eofRk2mMgxLE
+
 {
     "title": "Irunshit",
-	"author": "WhiteKitty",
+	"author": "OrangeKitty",
 	"url": "http://www.catthuglife.com",
 	"likes": 99,
-	"userId": "61190864873b4415cc707a3f"
+	"userId": "6124094425db77138c8869ec"
 }
 
 ###
@@ -43,8 +44,9 @@ Content-Type: application/json
 
 {
 	
-	"username": "OrangeKitty",
-	"password": "terrorism"
+	"username": "WhiteKitty",
+	"password": "evilKitty1121",
+	"name": "whitey"
 }
    
 ###
@@ -53,8 +55,8 @@ POST http://localhost:3001/api/login
 Content-Type: application/json
 
 {
-	"username": "OrangeKitty",
-	"password": "terrorism"
+	"username": "WhiteKitty",
+	"password": "evilKitty1121"
 }
 
 ###
