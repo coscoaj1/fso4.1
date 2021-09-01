@@ -1,19 +1,26 @@
 POST http://localhost:3001/api/blogs
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik9yYW5nZUtpdHR5IiwiaWQiOiI2MTI0MDk0NDI1ZGI3NzEzOGM4ODY5ZWMiLCJpYXQiOjE2Mjk3NTE2Nzl9.vnEuzrJJNStkldNzlI-BQ88yfHvHa22eofRk2mMgxLE
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IldoaXRlS2l0dHkiLCJpZCI6IjYxMjQwMzZiZjJiYzU1M2QwNDFkNjQ2YSIsImlhdCI6MTYzMDI3Nzc5Nn0.8c12ToIJbsoX6ijuYJ84etqkBjz0ITgIVF7ga1kXNAQ
 
 {
-    "title": "Irunshit",
-	"author": "OrangeKitty",
+    "title": "Debo all the food on teh bloc",
+	"author": "WhiteKitty",
 	"url": "http://www.catthuglife.com",
 	"likes": 99,
-	"userId": "6124094425db77138c8869ec"
+	"userId": "61190864873b4415cc707a3f"
 }
 
 ###
 
+POST http://localhost:3001/api/blogs/612409d1d501b32394b63fe8/comments
+Content-Type: application/json
 
-GET http://localhost:3001/api/blogs/
+{
+	"content": "OK is not OK -- whiteKitty"
+}
+###
+
+GET http://localhost:3001/api/blogs/612409d1d501b32394b63fe8/comments
 
 ###
 GET http://localhost:3001/api/users/
@@ -44,9 +51,9 @@ Content-Type: application/json
 
 {
 	
-	"username": "WhiteKitty",
-	"password": "evilKitty1121",
-	"name": "whitey"
+	"username": "Sid",
+	"password": "password",
+	"name": "Sid"
 }
    
 ###
