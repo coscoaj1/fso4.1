@@ -8,16 +8,14 @@ blogsRouter.get('/', async (request, response) => {
 	response.json(blogs);
 });
 
-blogsRouter.get('/:id', (request, response, next) => {
-	Blog.findById(request.params.id)
-		.then((note) => {
-			if (note) {
-				response.json(note);
-			} else {
-				response.status(404).end();
-			}
-		})
-		.catch((error) => next(error));
+blogsRouter.get('/:id', async (request, response) => {
+	const blog = await Blog.findById(request.params.id);
+
+	if (blog) {
+		response.json(blog);
+	} else {
+		response.status(404).end();
+	}
 });
 
 blogsRouter.post('/', async (request, response, next) => {
@@ -35,6 +33,7 @@ blogsRouter.post('/', async (request, response, next) => {
 		url: body.url,
 		likes: body.likes ? body.likes : 0,
 		user: user._id,
+		comments: body.comments,
 	});
 
 	const savedBlog = await blog.save();
@@ -69,6 +68,23 @@ blogsRouter.put('/:id', async (request, response) => {
 		new: true,
 	});
 	response.status(200).json(updatedBlog);
+});
+
+blogsRouter.post('/:id/comments', async (request, response) => {
+	const body = request.body;
+
+	const blog = await Blog.findById(request.params.id);
+	console.log(blog);
+	if (blog) {
+		blog.comments = blog.comments.concat(body);
+		const savedBlog = await blog.save();
+		await savedBlog
+			.populate({ path: 'user', select: ['name', 'username'] })
+			.execPopulate();
+		response.status(200).json(savedBlog.toJSON());
+	} else {
+		response.status(404).end();
+	}
 });
 
 module.exports = blogsRouter;
